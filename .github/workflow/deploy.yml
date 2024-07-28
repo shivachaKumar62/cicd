@@ -32,7 +32,33 @@ jobs:
         with:
           host: ${{ secrets.ec2-13-235-248-9.ap-south-1.compute.amazonaws.com }}
           username: ec2-user
-          key: ${{ secrets.shivacha.Ai }}
+          key: ${{ secrets.-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEAwO2P8vtt8iLG9s3lJQtEqs1dB/YO8tG/toRHvjMFRwJWBrcC
+2/e0QGOl+sCvq30Kei5h7owL+ewgblDF5I9RwfznUmQaqeSrruJ5UOfMETPmAX7O
+IZiw2TgIB0TFTxdhlWt3S5ug1p8WMHLgld1H/ksixrzVRlaBoHmpHxIeZ85F0vJT
+/euOgE1YZzUPfmxiD3seVqVuvcMdr4ATqB0BnLtWTslLdOrpT7xB6L9DfAUhS8vr
+0eM3ajVWWJ2fpWz9AZrXUSzeCbLlwqv2w4NMLM7sVYyr75zMpS8+RKg0DqiH9/Ex
+KfzvRxd/OLVW7fUG1d91PQ2zmY7KEBIJMISQFwIDAQABAoIBAHpzTbYvFy1kHVxw
+ekv0xvSRu8ZdykccEc5KTy7NO0BCn09LwSjUIzfrB2IMAnOZvZim78l0YfWShVL/
+OVtEC+RQHJISr0m9taoeXFmZhdA1XHr+fN6eB0EXayER6Rm2AV3RA7qdYIxYFMFT
+aHA2LoecMMpq+ALYzRWJomnyGhJPorK992p0SiOact6kV373mlREKNNPqipDsVBG
+C/VGqg2/JEEFA+AOD061XrLwdlR91m3+0bUyJgsuHlAmS9EBelBQcTidh5SINORl
+KpMXE5ecDDQ8DrkG5rCaBD3yOie+8whWsBxcuwOSsL6nIa/LjeZ7pCP8ki0byRZ1
+TbqgRmECgYEA8YpgXHsBR75Wp4G7ejxr06sPgQQ/Gjahv7Sl9R0Ccpz0p0U1dqCM
+CBGWHOcoa1rjOk6X1ZgAYfJ13tMjbQf20sGLGkgg4H9+Tj3849kQnnaKUBeXJ7P2
+sVcXeT2ECBXrR3V7PyX7vnHPXOMFZ1Fhz1j5LDpSaPkYjeXtoADKSiUCgYEAzHoy
+CvTyRgURaSEBaR9YjoQjKGQMMg0WtdD04Jv5srE89bB6XwCfFj10ngZxsDGNKyHN
+aHMGVluuxFCYO0jqj9x9hi4z5QIFdvhNAMuqZYpzXE7YYCL/GgDc1F1vmZUUblPf
+k88xw/JrMBZ4OVLi8XZkFyMsZZKp8YKBV3yYtosCgYEAgmYXMbZCca4DcDkssogu
+Gj7uhtN5EbjOyAVJ1zOLH782oZtOirWQA8ciyIXPH24Y4GCPvgNqqXZRRjOsm29C
+RHOymkS4YxrRYII8pfGI9FPAxg6GTyvsEb+X759TSV40AAcfu27RIvakYVw6jZW0
+/VDmbIcr+HoKVIj+KXRjwXUCgYEAh5cYDA/1f9zoeK/8QXsZvBd/QM9nDuGDB7my
+SCbl40qIQ9tsqga9d3/1DrzzMoUJOWrGzNZJg4Z0U5Wl/NoTQKZTTmDg5KD8grGQ
+TlC/g2nVqYZXERjj1Jhx1xjGYi9rRuWzQk6Ij4j27wJXYpvGBZweLwGR9SDWNGH3
+5s2mbpUCgYBUvDjCphytCG9ZV0QRNpNi1NCR6lqhjdUPap9vRkrFv/ayDRzhuLzr
+EGkRGgQ5u0sKlpMMMmsMeVKQixOH5ovYiqPMX6Rgt9uJzAKxyGH0YuOjSR5Vg5xn
+ROtEO3s7Z0KDeHgFsatsICcz9vz0lEoNk2dWySCAbPxYdidnqR/KvQ==
+-----END RSA PRIVATE KEY----- }}
           script: |
             REPOSITORY_URI=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}
             $(aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin $REPOSITORY_URI)
