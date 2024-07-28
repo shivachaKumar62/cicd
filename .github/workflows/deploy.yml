@@ -34,7 +34,7 @@ jobs:
           username: ec2-user
           key: ${{ secrets.AWS_EC2_KEY }}
           script: |
-            REPOSITORY_URI=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}
+            REPOSITORY_URI=${{ secrets.AWS_EC2_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}
             $(aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin $REPOSITORY_URI)
             docker pull $REPOSITORY_URI:latest
             docker stop my-react-app-container || true
