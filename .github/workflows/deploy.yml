@@ -19,23 +19,28 @@ jobs:
       - name: Log in to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
+        with:
+          region: ${{ secrets.AWS_EC2_REGION }}
+          mask-password: false
+          registry-type: private
+          skip-logout: false
 
       - name: Build and push Docker image
         id: build-image
         run: |
-          REPOSITORY_URI=${{ secrets.AWS_EC2_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_EC2_REGION }}.amazonaws.com/${{ secrets.cicd }}
+          REPOSITORY_URI=${{ secrets.AWS_EC2_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_EC2_REGION }}.amazonaws.com/${{ secrets.AWS_ECR_REPOSITORY }}
           docker build -t $REPOSITORY_URI:latest .
           docker push $REPOSITORY_URI:latest
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.AWS_EC2_IP}}
+          host: ${{ secrets.AWS_EC2_IP }}
           username: ec2-user
           key: ${{ secrets.AWS_EC2_KEY }}
           script: |
-            REPOSITORY_URI=${{ secrets.AWS_EC2_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}
-            $(aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin $REPOSITORY_URI)
+            REPOSITORY_URI=${{ secrets.AWS_EC2_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_EC2_REGION }}.amazonaws.com/${{ secrets.AWS_ECR_REPOSITORY }}
+            $(aws ecr get-login-password --region ${{ secrets.AWS_EC2_REGION }} | docker login --username AWS --password-stdin $REPOSITORY_URI)
             docker pull $REPOSITORY_URI:latest
             docker stop my-react-app-container || true
             docker rm my-react-app-container || true
