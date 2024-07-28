@@ -23,7 +23,7 @@ jobs:
       - name: Build and push Docker image
         id: build-image
         run: |
-          REPOSITORY_URI=${{ secrets.0582-6442-4111 }}.dkr.ecr.${{ secrets.ap-south-1 }}.amazonaws.com/${{ secrets.cicd }}
+          REPOSITORY_URI=${{ secrets.AWS_EC2_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_EC2_REGION }}.amazonaws.com/${{ secrets.cicd }}
           docker build -t $REPOSITORY_URI:latest .
           docker push $REPOSITORY_URI:latest
 
